@@ -1,0 +1,1959 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Dynamic Registration Form with Validation 
+Enable/Disable 
+Create a registration form with fields: Name, Email, Password. 
+• Use JavaScript to enable the Submit button only if all fields are non-empty and 
+valid. 
+• Show error messages if fields are invalid when the user moves away from an input 
+field. 
+• Use regular expressions to validate the email format and password strength 
+(minimum 8 characters, one uppercase, one number).-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dynamic Registration Form</title>
+  <style>
+  </style>
+</head>
+<body>
+  <h2>Registration Form</h2>
+  <form id="regForm">
+    Name: <input type="text" id="name"><span id="nameErr" class="error"></span><br><br>
+    Email: <input type="text" id="email"><span id="emailErr" class="error"></span><br><br>
+    Password: <input type="password" id="password"><span id="passErr" class="error"></span><br><br>
+    <button type="submit" id="submitBtn" disabled>Submit</button>
+  </form>
+  <script>
+    const nameField = document.getElementById("name");
+    const emailField = document.getElementById("email");
+    const passField = document.getElementById("password");
+    const submitBtn = document.getElementById("submitBtn");
+    const nameErr = document.getElementById("nameErr");
+    const emailErr = document.getElementById("emailErr");
+    const passErr = document.getElementById("passErr");
+    function validateName() {
+      if (nameField.value.trim() === "") {
+        nameErr.textContent = " Name required";
+        return false;
+      } else {
+        nameErr.textContent = "";
+        return true;
+      }
+    }
+    function validateEmail() {
+      const regex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+      if (!regex.test(emailField.value)) {
+        emailErr.textContent = " Invalid email";
+        return false;
+      } else {
+        emailErr.textContent = "";
+        return true;
+      }
+    }
+    function validatePassword() {
+      const regex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+      if (!regex.test(passField.value)) {
+        passErr.textContent = " Min 8 chars, 1 uppercase, 1 number";
+        return false;
+      } else {
+        passErr.textContent = "";
+        return true;
+      }
+    }
+    function checkForm() {
+      submitBtn.disabled = !(validateName() && validateEmail() && validatePassword());
+    }
+    </script>
+</body>
+</html>
+
+<!--Email Field Regex Validation on Blur Event 
+Design a form with an email field that performs real-time validation with JavaScript 
+regex: /^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/. 
+• Trigger validation on the onblur event. 
+• Display a success or error message dynamically below the input field.-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Email Validation</title>
+</head>
+<body>
+  <h2>Email Validation</h2>
+  <form>
+    <input type="text" id="email" placeholder="Enter your email">
+    <div id="msg"></div>
+  </form>
+  <script>
+    let email = document.getElementById("email")
+    let msg = document.getElementById("msg")
+    email.onblur = function() {
+      let regex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/
+      if(regex.test(email.value)) {
+        msg.style.color = "green"
+        msg.innerText = "Valid email"
+      } else {
+        msg.style.color = "red"
+        msg.innerText = "Invalid email"
+      }
+    }
+  </script>
+</body>
+</html>
+
+<!--Dynamic Phone Number Validation Using Regular 
+Expressions 
+Create a phone number input field and validate user input as they type using regex to allow 
+only valid phone numbers like: 
+• US format: (123) 456-7890 or 123-456-7890. 
+• Use JavaScript input event to update validation status live. -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Phone Validation</title>
+</head>
+<body>
+  <h2>Phone Number Validation</h2>
+  <form>
+    <input type="text" id="phone" placeholder="Enter phone number">
+    <div id="msg"></div>
+  </form>
+  <script>
+    let phone = document.getElementById("phone")
+    let msg = document.getElementById("msg")
+    phone.oninput = function() {
+      let regex = /^(\(\d{3}\)\s?\d{3}-\d{4}|\d{3}-\d{3}-\d{4})$/
+      if(regex.test(phone.value)) {
+        msg.style.color = "green"
+        msg.innerText = "Valid phone number"
+      } else {
+        msg.style.color = "red"
+        msg.innerText = "Invalid phone number"
+      }
+    }
+  </script>
+</body>
+</html>
+
+<!--Dynamic Form Input Fields Addition 
+Build a "hobbies" form that allows users to add multiple hobbies dynamically using a 
+button. 
+• When the “Add Hobby” button is clicked, append a new input field below the existing 
+ones. 
+• Validate each hobby input to contain only alphabets using regex /^[A-Za-z\\s]+$/.-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hobbies Form</title>
+</head>
+<body>
+  <h2>Enter Your Hobbies</h2>
+  <form id="hobbyForm">
+    <input type="text" class="hobby" placeholder="Enter hobby">
+    <br>
+    <div id="msg"></div>
+    <button type="button" id="add">Add Hobby</button>
+  </form>
+  <script>
+    let form = document.getElementById("hobbyForm")
+    let add = document.getElementById("add")
+    let msg = document.getElementById("msg")
+    function validate(input) {
+      let regex = /^[A-Za-z\s]+$/
+      if(regex.test(input.value)) {
+        input.style.borderColor = "green"
+        msg.innerText = ""
+      } else {
+        input.style.borderColor = "red"
+        msg.style.color = "red"
+        msg.innerText = "Only letters allowed"
+      }
+    }
+    form.addEventListener("input", e => {
+      if(e.target.classList.contains("hobby")) {
+        validate(e.target)
+      }
+    })
+    add.onclick = function() {
+      let newInput = document.createElement("input")
+      newInput.type = "text"
+      newInput.placeholder = "Enter hobby"
+      newInput.classList.add("hobby")
+      form.insertBefore(newInput, msg)
+    }
+  </script>
+</body>
+</html>
+
+<!--Password and Confirm Password Real-time Matching 
+Create a form that takes Password and Confirm Password inputs. 
+• As user types in either field, dynamically check if they match. 
+• Show messages: “Passwords match” (green) or “Passwords do not match” (red). -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Password Match</title>
+</head>
+<body>
+  <h2>Password Match</h2>
+  <form>
+    <input type="password" id="pass" placeholder="Enter password"><br>
+    <input type="password" id="cpass" placeholder="Confirm password"><br>
+    <div id="msg"></div>
+  </form>
+  <script>
+    let pass = document.getElementById("pass")
+    let cpass = document.getElementById("cpass")
+    let msg = document.getElementById("msg")
+    function check() {
+      if(pass.value && cpass.value) {
+        if(pass.value === cpass.value) {
+          msg.style.color = "green"
+          msg.innerText = "Passwords match"
+        } else {
+          msg.style.color = "red"
+          msg.innerText = "Passwords do not match"
+        }
+      } else {
+        msg.innerText = ""
+      }
+    }
+    pass.oninput = check
+    cpass.oninput = check
+  </script>
+</body>
+</html>
+
+<!--Username Validation Using Regex to Restrict Special 
+Characters 
+Develop a form where the username input must only allow letters, numbers, underscores 
+without special characters. 
+• Use regex /^[a-zA-Z0-9_]{3,16}$/ to validate username length between 3 and 16 
+characters. 
+• Prevent form submission if invalid and display an error message. -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Username Validation</title>
+</head>
+<body>
+  <h2>Username Validation</h2>
+  <form id="userForm">
+    <input type="text" id="username" placeholder="Enter username"><br>
+    <div id="msg"></div>
+    <button type="submit">Submit</button>
+  </form>
+  <script>
+    let form = document.getElementById("userForm")
+    let user = document.getElementById("username")
+    let msg = document.getElementById("msg")
+    form.onsubmit = function(e) {
+      e.preventDefault()
+      let regex = /^[a-zA-Z0-9_]{3,16}$/
+      if(regex.test(user.value)) {
+        msg.style.color = "green"
+        msg.innerText = "Valid username"
+      } else {
+        msg.style.color = "red"
+        msg.innerText = "Invalid username"
+      }
+    }
+  </script>
+</body>
+</html>
+
+<!--Date Format Validation ‘DD/MM/YYYY’ with Regex 
+Design a form with a date input field that requires the date format DD/MM/YYYY. 
+• Use the regex /^\\d{2}\\/\\d{2}\\/\\d{4}$/ to confirm the format. 
+• Alert user with an error message if format is incorrect upon form submission. -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Date Validation</title>
+</head>
+<body>
+  <h2>Date Validation</h2>
+  <form id="dateForm">
+    <input type="text" id="date" placeholder="DD/MM/YYYY"><br>
+    <div id="msg"></div>
+    <button type="submit">Submit</button>
+  </form>
+  <script>
+    let form = document.getElementById("dateForm")
+    let date = document.getElementById("date")
+    let msg = document.getElementById("msg")
+    form.onsubmit = function(e) {
+      e.preventDefault()
+      let regex = /^\d{2}\/\d{2}\/\d{4}$/
+      if(regex.test(date.value)) {
+        msg.style.color = "green"
+        msg.innerText = "Valid date format"
+      } else {
+        msg.style.color = "red"
+        msg.innerText = "Invalid date format"
+      }
+    }
+  </script>
+</body>
+</html>
+
+<!--Hexadecimal Color Code Validation with Live Preview 
+Create an input field for color codes (e.g., #FFF or #FFFFFF). 
+• Validate the input with regex /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/. 
+• Provide a live color preview box beside the input that changes as the value updates. -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hex Color Validation</title>
+</head>
+<body>
+  <h2>Hex Color Validation</h2>
+  <form>
+    <div class="wrapper">
+      <input type="text" id="color" placeholder="#RRGGBB or #RGB">
+      <div id="preview"></div>
+    </div>
+    <div id="msg"></div>
+  </form>
+  <script>
+    let color = document.getElementById("color")
+    let msg = document.getElementById("msg")
+    let preview = document.getElementById("preview")
+
+    color.addEventListener("input", () => {
+      let value = color.value.trim()
+      let regex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
+      preview.style.backgroundColor = value
+      if(regex.test(value)) {
+        msg.style.color = "green"
+        msg.innerText = "Valid color"
+      } else {
+        msg.style.color = "red"
+        msg.innerText = "Invalid color"
+      }
+    })
+  </script>
+</body>
+</html>
+
+<!--Dynamic Country Dropdown Based on Selected 
+Continent 
+Implement two cascading dropdowns: one for continents and another for countries. 
+• When the user selects a continent, JavaScript updates the country list dynamically. 
+• Use objects or maps to manage continent-country data.-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Continent & Country Dropdown</title>
+</head>
+<body>
+  <h2>Select Continent and Country</h2>
+  <form>
+    <select id="continent">
+      <option value="">Select Continent</option>
+      <option value="Asia">Asia</option>
+      <option value="Europe">Europe</option>
+      <option value="Africa">Africa</option>
+    </select><br>
+    <select id="country">
+      <option value="">Select Country</option>
+    </select>
+  </form>
+  <script>
+    let continent = document.getElementById("continent")
+    let country = document.getElementById("country")
+    let data = {
+      Asia: ["India","China","Japan"],
+      Europe: ["France","Germany","Italy"],
+      Africa: ["Nigeria","Egypt","South Africa"]
+    }
+    continent.onchange = function() {
+      country.innerHTML = "<option value=''>Select Country</option>"
+      if(data[continent.value]) {
+        data[continent.value].forEach(c => {
+          let opt = document.createElement("option")
+          opt.value = c
+          opt.text = c
+          country.appendChild(opt)
+        })
+      }
+    }
+  </script>
+</body>
+</html>
+
+<!--Dynamic Form Builder UI 
+Create a simple UI where users can add different types of form inputs dynamically (e.g., text, 
+email, password). 
+• Users select input type from a dropdown and click “Add”. 
+• JavaScript generates the form inputs dynamically and appends them to the form. 
+• Validate all inputs with appropriate regex depending on type.-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic Form Builder</title>
+</head>
+<body>
+  <h2>Dynamic Form Builder</h2>
+  <form id="form">
+    <select id="type">
+      <option value="">Select input type</option>
+      <option value="text">Text</option>
+      <option value="email">Email</option>
+      <option value="password">Password</option>
+    </select><br>
+    <button type="button" id="add">Add</button>
+    <div id="fields"></div>
+    <button type="submit">Submit</button>
+  </form>
+  <div id="msg"></div>
+  <script>
+    let type = document.getElementById("type")
+    let add = document.getElementById("add")
+    let fields = document.getElementById("fields")
+    let form = document.getElementById("form")
+    let msg = document.getElementById("msg")
+    add.onclick = function() {
+      if(type.value) {
+        let input = document.createElement("input")
+        input.type = type.value
+        input.placeholder = "Enter " + type.value
+        input.className = "field"
+        fields.appendChild(input)
+      }
+    }
+    form.onsubmit = function(e) {
+      e.preventDefault()
+      let valid = true
+      msg.innerText = ""
+      let inputs = fields.querySelectorAll("input")
+      inputs.forEach(i => {
+        let value = i.value.trim()
+        if(i.type === "text") {
+          if(!/^[A-Za-z\s]+$/.test(value)) valid = false
+        }
+        if(i.type === "email") {
+          if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value)) valid = false
+        }
+        if(i.type === "password") {
+          if(!/^(?=.*[A-Z])(?=.*\d).{8,}$/.test(value)) valid = false
+        }
+      })
+      if(valid) {
+        msg.style.color = "green"
+        msg.innerText = "All inputs are valid"
+      } else {
+        msg.style.color = "red"
+        msg.innerText = "Some inputs are invalid"
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Change Text on Button Click 
+Suppose you have a webpage with a button and a paragraph. When the 
+user clicks the button, the text inside the paragraph should change to a 
+new message (like "Hello, World!"). 
+Hint: Use .click() and .text().-->
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Change</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <div id="container">
+    <p id="message">Click the button</p>
+    <button id="changeBtn">Change Text</button>
+  </div>
+  <script>
+    $(function(){
+      $('#changeBtn').click(function(){
+        $('#message').text('Hi');
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--Hide and Show Paragraph 
+Imagine a webpage with some description text. Add two buttons labelled 
+"Hide" and "Show". When "Hide" is clicked, the paragraph should 
+disappear, and when "Show" is clicked, it should reappear. 
+Hint: Use .hide() and .show(). -->
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Hide and Show</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <div class="card">
+    <h2>Description</h2>
+    <p id="desc">Click the button</p>
+    <div>
+      <button class="hide" id="hideBtn">Hide</button>
+      <button class="show" id="showBtn">Show</button>
+    </div>
+  </div>
+  <script>
+    $(function(){
+      $('#hideBtn').click(function(){
+        $('#desc').hide();
+      });
+      $('#showBtn').click(function(){
+        $('#desc').show();
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--Toggle an Image 
+Create a webpage with an image and a button. Each time the user clicks 
+the button, the image should toggle between being visible and hidden. 
+This is useful in real apps like showing/hiding ads or banners. 
+Hint: Use .toggle(). -->
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Fade</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <div class="card">
+    <h2>Fade Image</h2>
+    <img id="demoImg" src="qq.jpg" alt="Sample">
+    <div>
+      <button id="toggleBtn">Fade</button>
+    </div>
+  </div>
+  <script>
+    $(function(){
+      $('#toggleBtn').click(function(){
+        $('#demoImg').fadeToggle();
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--Change Background Color 
+Design a div (box) on the page. When a button is clicked, the background 
+color of the box should change to another color, like blue or red. This 
+simulates color themes or highlight effects. 
+Hint: Use .css("background-color", "blue").-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Change Color</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    #colorBox {
+      width: 200px;
+      height: 200px;
+      border: 2px solid black;
+      margin: 20px;
+      background-color: lightgray;
+    }
+  </style>
+</head>
+<body>
+  <h2>Change Background Color</h2>
+  <div id="colorBox"></div>
+  <button id="blueBtn">Blue</button>
+  <button id="redBtn">Red</button>
+  <script>
+    $(document).ready(function() {
+      $("#blueBtn").click(function() {
+        $("#colorBox").css("background-color", "blue");
+      });
+      $("#redBtn").click(function() {
+        $("#colorBox").css("background-color", "red");
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--Add New List Item 
+Start with an unordered list (<ul>) that has a few items. Add a button 
+called "Add Item". When clicked, it should insert a new <li> item at the 
+bottom of the list. 
+Hint: Use .append("<li>Item</li>").-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Add</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <h2>Add New Item</h2>
+  <ul id="myList">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
+  <button id="addBtn">Add Item</button>
+  <script>
+    $(document).ready(function() {
+      let count = 3; 
+      $("#addBtn").click(function() {
+        count++;
+        $("#myList").append("<li>Item " + count + "</li>");
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--Fade In and Fade Out 
+Create an image on the page with two buttons: "Fade In" and "Fade Out". 
+Clicking each button should smoothly show or hide the image with fading 
+animation. 
+Hint: Use .fadeIn() and .fadeOut(). -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fade</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <h2>Fade</h2>
+  <button id="fadeInBtn">Fade In</button>
+  <button id="fadeOutBtn">Fade Out</button>
+  <br>
+  <img id="myImage" src="qq.jpg" alt="Sample Image">
+  <script>
+    $(document).ready(function() {
+      $("#fadeInBtn").click(function() {
+        $("#myImage").fadeIn(1000);
+      });
+      $("#fadeOutBtn").click(function() {
+        $("#myImage").fadeOut(1000);
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--Simple Form Alert 
+Add a form with a text input and a submit button. When the form is 
+submitted, show the entered text in an alert popup without actually 
+submitting the form to the server. 
+Hint: Use .submit() and .val().-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Simple Form Alert</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <h2>Simple Form Alert</h2>
+  <form id="myForm">
+    <input type="text" id="textInput" placeholder="Enter something">
+    <button type="submit">Submit</button>
+  </form>
+  <script>
+    $(document).ready(function() {
+      $("#myForm").submit(function(event) {
+        event.preventDefault(); 
+        let inputText = $("#textInput").val();
+        alert("You entered: " + inputText);
+      });
+    });
+  </script>
+</body>
+
+<!--Change Image Source 
+Build a small gallery with one large image and a few small thumbnails. 
+When a thumbnail is clicked, the large image should change to match the 
+thumbnail. 
+Hint: Use .attr("src"). -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Image Gallery</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    body {
+      text-align: center;
+      margin: 40px;
+    }
+    img {
+      width: 400px;
+      height: 300px;
+      border: 3px solid #333;
+      margin-bottom: 20px;
+    }
+    .thumbnail {
+      width: 100px;
+      height: 75px;
+      margin: 5px;
+      border: 2px solid #666;
+      cursor: pointer;
+    }
+   
+  </style>
+</head>
+<body>
+  <h2>Simple Image Gallery</h2>
+  <img id="largeImage" src="kk.jpeg" alt="Large">
+  <br>
+  <img class="thumbnail" src="qq.jpg" alt="Thumb1">
+  <img class="thumbnail" src="qq.jpg" alt="Thumb2">
+  <img class="thumbnail" src="qq.jpg" alt="Thumb3">
+  <img class="thumbnail" src="qq.jpg" alt="Thumb4">
+  <script>
+    $(document).ready(function() {
+      $(".thumbnail").click(function() {
+        let newSrc = $(this).attr("src");
+        $("#largeImage").attr("src", newSrc);
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--Hover Effect 
+Write a paragraph of text on your page. When the user hovers the mouse 
+over it, the color should change (say from black to red). When the mouse 
+moves away, it should return to normal. 
+Hint: Use .hover() with two functions. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hover Effect</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <h2>Hover</h2>
+  <p id="myPara">color change</p>
+  <script>
+    $(document).ready(function() {
+      $("#myPara").hover(
+        function() { 
+          $(this).css("color", "red");  
+        }, 
+        function() { 
+          $(this).css("color", "blue"); 
+        }
+      );
+    });
+  </script>
+</body>
+</html>
+
+<!--Slide Up and Slide Down 
+Create a simple menu (like a drop-down). When clicked, it should expand 
+downwards showing the hidden items. When clicked again, it should slide 
+back up. 
+Hint: Use .slideToggle(). 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Slide Toggle Menu</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <h2>Slide</h2>
+  <div id="menu">
+    <div id="menuHeader">O Menu</div>
+    <ul id="menuItems">
+      <li>Home</li>
+      <li>About</li>
+      <li>Services</li>
+      <li>Contact</li>
+    </ul>
+  </div>
+  <script>
+    $(document).ready(function() {
+      $("#menuHeader").click(function() {
+        $("#menuItems").slideToggle(500); 
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--Form Validation (Required Fields) 
+Build a signup form with fields like Name and Email. Before submission, 
+check that none of the fields are empty and that the email is in the correct 
+format. Show a warning message if validation fails. 
+Hint: Use .each() and regex for email validation. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Form Validation</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <h2>Form</h2>
+  <form id="signupForm">
+    <input type="text" id="name" placeholder="Enter your name">
+    <span class="error" id="nameError"></span>
+    <input type="text" id="email" placeholder="Enter your email">
+    <span class="error" id="emailError"></span>
+    <button type="submit">Submit</button>
+  </form>
+  <script>
+    $(document).ready(function() {
+      $("#signupForm").submit(function(event) {
+        event.preventDefault();
+        let isValid = true;
+        $(".error").text("");
+        if ($("#name").val().trim() === "") {
+          $("#nameError").text("Name is required.");
+          isValid = false;
+        }
+        let email = $("#email").val().trim();
+        let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
+        if (email === "") {
+          $("#emailError").text("Email is required.");
+          isValid = false;
+        } else if (!emailPattern.test(email)) {
+          $("#emailError").text("Enter a valid email address.");
+          isValid = false;
+        }
+        if (isValid) {
+          alert("Form submitted successfully!");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--Accordion for FAQ Section 
+Create a list of frequently asked questions. When a user clicks on a 
+question, the answer should slide down. If another question is clicked, the 
+previous answer should close. 
+Hint: Use .slideToggle() and .not().-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>FAQ</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <h2>FAQ Section</h2>
+  <div class="faq">
+    <div class="faq-item">
+      <div class="faq-question">What is jQuery?</div>
+      <div class="faq-answer">jQuery is a fast, small, and feature-rich JavaScript library.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Why use jQuery?</div>
+      <div class="faq-answer">It simplifies HTML document traversal, event handling, and animation.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Is jQuery still useful today?</div>
+      <div class="faq-answer">Yes, although modern JavaScript can do much of what jQuery does, it is still widely used.</div>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function() {
+      $(".faq-question").click(function() {
+        let answer = $(this).next(".faq-answer");
+        $(".faq-answer").not(answer).slideUp();
+        answer.slideToggle();
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--Character Counter in Textarea 
+Add a textarea for typing (like posting a tweet). Below it, display how 
+many characters are remaining out of 100. Update the counter as the user 
+types. 
+Hint: Use .keyup() and .val().length. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Character Counter</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <h2>Post</h2>
+  <textarea id="tweetBox" maxlength="100"></textarea>
+  <div id="counter">100 characters remaining</div>
+  <script>
+    $(document).ready(function() {
+      $("#tweetBox").keyup(function() {
+        let max = 100;
+        let currentLength = $(this).val().length;
+        let remaining = max - currentLength;
+        $("#counter").text(remaining + " characters remaining");
+        if (remaining <= 10) {
+          $("#counter").addClass("warning");
+        } else {
+          $("#counter").removeClass("warning");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--Scroll-to-Top Button 
+On long pages, add a "Scroll to Top" button that only appears after the 
+user scrolls down a few hundred pixels. When clicked, it smoothly scrolls 
+the page back to the top. 
+Hint: Use .scroll() and .animate().-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scroll to Top</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <h2>Scroll</h2>
+  <p>Scroll down</p>
+  <div style="height:2000px;"></div>
+  <button id="topBtn">⬆ Top</button>
+  <script>
+    $(document).ready(function() {
+      $(window).scroll(function() {
+        if ($(this).scrollTop() > 200) {
+          $("#topBtn").fadeIn();
+        } else {
+          $("#topBtn").fadeOut();
+        }
+      });
+
+      $("#topBtn").click(function() {
+        $("html, body").animate({scrollTop: 0}, 800);
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--Tab Navigation 
+Build a tab system with multiple tabs like "Home", "About", "Contact". 
+Clicking each tab should display its related content while hiding the 
+others. 
+Hint: Use .hide() / .show() with tab selectors.-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Tab Navigation</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <h2>Tab Navigation Example</h2>
+  <div class="tabs">
+    <div class="tab active" data-target="#home">Home</div>
+    <div class="tab" data-target="#about">About</div>
+    <div class="tab" data-target="#contact">Contact</div>
+  </div>
+  <div id="home" class="tab-content" style="display:block;">
+    <h3>Welcome to Home</h3>
+    <p>This is the home section with some introduction content.</p>
+  </div>
+  <div id="about" class="tab-content">
+    <h3>About Us</h3>
+    <p>This section contains details about our website or company.</p>
+  </div>
+  <div id="contact" class="tab-content">
+    <h3>Contact Us</h3>
+    <p>Here you can find our contact details or send us a message.</p>
+  </div>
+  <script>
+    $(document).ready(function() {
+      $(".tab").click(function() {
+        $(".tab").removeClass("active");
+        $(this).addClass("active");
+
+        $(".tab-content").hide();
+
+        let target = $(this).data("target");
+        $(target).show();
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--Disable Submit Until Terms Checked 
+On a signup form, add a "Terms and Conditions" checkbox. The 
+"Submit" button should stay disabled until the checkbox is selected. 
+Hint: Use .prop("disabled", true/false) inside .change().-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Disable</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <h2>Signup Form</h2>
+  <form id="signupForm">
+    <input type="text" placeholder="Enter your name" required><br>
+    <input type="email" placeholder="Enter your email" required><br>
+    <label>
+      <input type="checkbox" id="terms"> I agree to the Terms and Conditions
+    </label><br><br>
+
+    <button type="submit" id="submitBtn" disabled>Submit</button>
+  </form>
+  <script>
+    $(document).ready(function() {
+      $("#terms").change(function() {
+        if ($(this).is(":checked")) {
+          $("#submitBtn").prop("disabled", false);
+        } else {
+          $("#submitBtn").prop("disabled", true);
+        }
+      });
+      $("#signupForm").submit(function(e) {
+        e.preventDefault();
+        alert("Form submitted successfully!");
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--Dynamic Table Filter 
+Create an employee table with columns like Name, Department, and 
+Email. Above the table, add a search box. As the user types in the box, 
+show only the rows that match the text. 
+Hint: Use .filter() and .toggle(). -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dynamic</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <h2>Employee</h2>
+  <input type="text" id="searchBox" placeholder="Search employee...">
+  <table id="employeeTable" border="1" cellpadding="8">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>John Doe</td><td>HR</td><td>john@gmail.com</td></tr>
+      <tr><td>Jane Smith</td><td>IT</td><td>jane@gmail.com</td></tr>
+      <tr><td>Mike Brown</td><td>Finance</td><td>mike@gmail.com</td></tr>
+    </tbody>
+  </table>
+  <script>
+    $(document).ready(function(){
+      $("#searchBox").on("keyup", function(){
+        var value = $(this).val().toLowerCase();
+        $("#employeeTable tbody tr").filter(function(){
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--Shopping Cart Calculation 
+Design a shopping cart table with product names, prices, and quantity 
+input boxes. When the quantity changes, automatically recalculate and 
+update the total cost. 
+Hint: Use .change() on inputs and .text() to update totals.-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Shopping Cart</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <h2>Shopping Cart</h2>
+  <table border="1" cellpadding="8" id="cartTable">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Apple</td>
+        <td class="price">1.2</td>
+        <td><input type="number" class="qty" value="1" min="0"></td>
+        <td class="total">1.2</td>
+      </tr>
+      <tr>
+        <td>Banana</td>
+        <td class="price">0.8</td>
+        <td><input type="number" class="qty" value="2" min="0"></td>
+        <td class="total">1.6</td>
+      </tr>
+    </tbody>
+  </table>
+  <script>
+    $(document).ready(function(){
+      function updateTotal(row){
+        var price = parseFloat(row.find(".price").text());
+        var qty = parseInt(row.find(".qty").val());
+        row.find(".total").text((price * qty).toFixed(2));
+      }
+
+      $(".qty").on("change keyup", function(){
+        updateTotal($(this).closest("tr"));
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--Simple AJAX Call 
+Add a button "Load Users". When clicked, fetch a JSON list of users 
+(like name and email) from a file or API and display them in a list on the 
+page. 
+Hint: Use $.getJSON() and .append(). -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Load Users from JSON</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <h2>Users List</h2>
+  <button id="loadUsers">Load Users</button>
+  <ul id="userList"></ul>
+  <script id="userData" type="application/json">
+    [
+      {"name": "John Doe", "email": "john@example.com"},
+      {"name": "Jane Smith", "email": "jane@example.com"},
+      {"name": "Mike Brown", "email": "mike@example.com"},
+      {"name": "Alice Green", "email": "alice@example.com"}
+    ]
+  </script>
+  <script>
+    $(document).ready(function(){
+      $("#loadUsers").click(function(){
+        var data = JSON.parse($("#userData").html()); 
+        $("#userList").empty(); 
+        $.each(data, function(i, user){
+          $("#userList").append("<li>" + user.name + " - " + user.email + "</li>");
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--Dark Mode Toggle 
+Add a switch button that lets the user switch between light and dark 
+themes for the page. Change background and text colors accordingly. 
+Hint: Use .toggleClass("dark-mode").-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dark Mode</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      color: #333;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background-color: #121212;
+      color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h2>Dark Mode Toggle</h2>
+  <label>
+    <input type="checkbox" id="darkModeToggle"> Enable Dark Mode
+  </label>
+  <script>
+    $(document).ready(function(){
+      $("#darkModeToggle").change(function(){
+        $("body").toggleClass("dark-mode");
+      });
+    });
+  </script>
+</body>
+</html>
+
