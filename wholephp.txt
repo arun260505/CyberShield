@@ -1,0 +1,1856 @@
+1. $color = array('white', 'green', 'red', 'blue', 'black'); 
+Write a script which will display the following string -   
+"The memory of that scene for me is like a frame of film forever frozen at that 
+moment: the red carpet, the green lawn, the white house, the leaden sky. The 
+new president and his first lady. - Richard M. Nixon" 
+and the words 'red', 'green' and 'white' will come from $color.
+
+<?php
+$color = array('white', 'green', 'red', 'blue', 'black');
+$text = "The memory of that scene for me is like a frame of film forever frozen at that moment: 
+the $color[2] carpet, the $color[1] lawn, the $color[0] house, the leaden sky. The new president and his first lady. - Richard M. Nixon";
+echo $text;
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+2. $color = array('white', 'green', 'red'')   
+Write a PHP script which will display the colors in the following way : 
+Output : 
+white, green, red, 
+• green 
+• red 
+• white
+
+<?php
+$color = array('white', 'green', 'red');
+echo implode(", ", $color) . "<br>";
+foreach ($color as $col) {
+    echo "• $col<br>";
+}
+?>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+3. $ceu = array( "Italy"=>"Rome", "Luxembourg"=>"Luxembourg", "Belgium"=> 
+"Brussels", "Denmark"=>"Copenhagen", "Finland"=>"Helsinki", "France" => 
+"Paris", "Slovakia"=>"Bratislava", "Slovenia"=>"Ljubljana", "Germany" => 
+"Berlin", "Greece" => "Athens", "Ireland"=>"Dublin", 
+"Netherlands"=>"Amsterdam", "Portugal"=>"Lisbon", "Spain"=>"Madrid", 
+"Sweden"=>"Stockholm", "United Kingdom"=>"London", "Cyprus"=>"Nicosia", 
+"Lithuania"=>"Vilnius", "Czech Republic"=>"Prague", "Estonia"=>"Tallin", 
+"Hungary"=>"Budapest", "Latvia"=>"Riga", "Malta"=>"Valetta", "Austria" => 
+"Vienna", "Poland"=>"Warsaw") ; 
+Create a PHP script which displays the capital and country name from the 
+above array $ceu. Sort the list by the capital of the country.   
+Sample Output : 
+The capital of Netherlands is Amsterdam  
+The capital of Greece is Athens  
+The capital of Germany is Berlin  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+<?php
+$ceu = array(
+    "Italy"=>"Rome", "Luxembourg"=>"Luxembourg", "Belgium"=>"Brussels", 
+    "Denmark"=>"Copenhagen", "Finland"=>"Helsinki", "France"=>"Paris", 
+    "Slovakia"=>"Bratislava", "Slovenia"=>"Ljubljana", "Germany"=>"Berlin", 
+    "Greece"=>"Athens", "Ireland"=>"Dublin", "Netherlands"=>"Amsterdam", 
+    "Portugal"=>"Lisbon", "Spain"=>"Madrid", "Sweden"=>"Stockholm", 
+    "United Kingdom"=>"London", "Cyprus"=>"Nicosia", "Lithuania"=>"Vilnius", 
+    "Czech Republic"=>"Prague", "Estonia"=>"Tallin", "Hungary"=>"Budapest", 
+    "Latvia"=>"Riga", "Malta"=>"Valetta", "Austria"=>"Vienna", "Poland"=>"Warsaw"
+);
+
+asort($ceu);
+
+foreach ($ceu as $country => $capital) {
+    echo "The capital of $country is $capital<br>";
+}
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+4. $x = array(1, 2, 3, 4, 5); 
+Delete an element from the above PHP array. After deleting the element, 
+integer keys must be normalized.   
+Sample Output : 
+array(5) { [0]=> int(1) [1]=> int(2) [2]=> int(3) [3]=> int(4) [4]=> int(5) }  
+array(4) { [0]=> int(1) [1]=> int(2) [2]=> int(3) [3]=> int(5) } 
+
+<?php
+$x = array(1, 2, 3, 4, 5);
+echo "Original Array:<br>";
+var_dump($x);
+echo"<br><br>";
+unset($x[3]);
+$x = array_values($x);
+echo "Array after deletion<br>";
+var_dump($x);
+?>
+
+
+
+
+
+
+
+
+
+
+5. $color = array(4 => 'white', 6 => 'green', 11=> 'red'); 
+Write a PHP script to get the first element of the above array.   
+Expected result : white 
+
+<?php
+$color = array(4 => 'white', 6 => 'green', 11 => 'red');
+$first = reset($color);
+echo $first;
+?>
+
+
+
+
+
+
+
+
+
+
+
+6. Write a PHP script which decodes the following JSON string.   
+Sample JSON code : 
+{"Title": "The Cuckoos Calling", 
+"Author": "Robert Galbraith", 
+"Detail": { 
+"Publisher": "Little Brown" 
+}} 
+Expected Output : 
+Title : The Cuckoos Calling 
+Author : Robert Galbraith 
+Publisher : Little Brown 
+
+<?php
+$json = '{
+    "Title": "The Cuckoos Calling",
+    "Author": "Robert Galbraith",
+    "Detail": {
+        "Publisher": "Little Brown"
+    }
+}';
+
+$data = json_decode($json, true);
+
+echo "Title : " . $data['Title'] . "<br>";
+echo "Author : " . $data['Author'] . "<br>";
+echo "Publisher : " . $data['Detail']['Publisher'] . "<br>";
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+7. Write a PHP script that inserts a new item in an array in any position.   
+Expected Output : 
+Original array :  
+1 2 3 4 5  
+After inserting '$' the array is : 
+1 2 3 $ 4 5 
+
+<?php
+$array = array(1, 2, 3, 4, 5);
+
+echo "Original array :<br>";
+foreach ($array as $value) {
+    echo $value . " ";
+}
+echo "<br><br>";
+$position = 3;
+array_splice($array, $position, 0, '$');
+
+echo "After inserting '\$' the array is :<br>";
+foreach ($array as $value) {
+    echo $value . " ";
+}
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+8. Write a PHP script to sort the following associative array :   
+array("Sophia"=>"31","Jacob"=>"41","William"=>"39","Ramesh"=>"40") in 
+a) ascending order sort by value 
+b) ascending order sort by Key 
+c) descending order sorting by Value 
+d) descending order sorting by Key 
+
+<?php
+$people = array("Sophia" => "31", "Jacob" => "41", "William" => "39", "Ramesh" => "40");
+
+asort($people);
+echo "a) Ascending order sort by value:<br>";
+foreach ($people as $key => $value) {
+    echo "$key => $value<br>";
+}
+echo "<br><br>";
+
+ksort($people);
+echo "b) Ascending order sort by key:<br>";
+foreach ($people as $key => $value) {
+    echo "$key => $value<br>";
+}
+echo "<br><br>";
+
+arsort($people);
+echo "c) Descending order sort by value:<br>";
+foreach ($people as $key => $value) {
+    echo "$key => $value<br>";
+}
+echo "<br><br>";
+
+krsort($people);
+echo "d) Descending order sort by key:<br>";
+foreach ($people as $key => $value) {
+    echo "$key => $value<br>";
+}
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+9. Write a PHP script to calculate and display average temperature, five 
+lowest and highest temperatures.   
+Recorded temperatures: 78, 60, 62, 68, 71, 68, 73, 85, 66, 64, 76, 63, 75, 76, 
+73, 68, 62, 73, 72, 65, 74, 62, 62, 65, 64, 68, 73, 75, 79, 73 
+Expected Output: 
+Average Temperature is : 70.6  
+List of seven lowest temperatures : 60, 62, 63, 63, 64,  
+List of seven highest temperatures : 76, 78, 79, 81, 85, 
+
+<?php
+$temperatures = array(
+    78, 60, 62, 68, 71, 68, 73, 85, 66, 64, 76, 63, 75, 76,
+    73, 68, 62, 73, 72, 65, 74, 62, 62, 65, 64, 68, 73, 75, 79, 73
+);
+
+$average = array_sum($temperatures) / count($temperatures);
+echo "Average Temperature is : " . round($average, 1) . "<br>";
+$unique_temps = array_unique($temperatures);
+sort($unique_temps);
+$lowest = array_slice($unique_temps, 0, 5);
+$highest = array_slice($unique_temps, -5);
+
+echo "List of seven lowest temperatures : " . implode(", ", $lowest) . "<br>";
+echo "List of seven highest temperatures : " . implode(", ", $highest) . "<br>";
+?>
+
+
+
+
+
+
+
+
+11. Write a PHP program to merge (by index) the following two arrays.  
+Sample arrays : 
+$array1 = array(array(77, 87), array(23, 45)); 
+$array2 = array("w3resource", "com"); 
+Expected Output : 
+Array   
+(       
+[0] => Array           
+(               
+[0] => w3resource               
+[1] => 77               
+[2] => 87           
+)         
+[1] => Array           
+(               
+[0] => com               
+[1] => 23               
+[2] => 45           
+)     
+) 
+
+
+<?php
+$array1 = array(array(77, 87), array(23, 45));
+$array2 = array("w3resource", "com");
+
+$result = array();
+
+for ($i = 0; $i < count($array1); $i++) {
+    $result[$i] = array_merge(array($array2[$i]), $array1[$i]);
+}
+
+print_r($result);
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+12. Write a PHP function to change the following array's all values to upper or 
+lower case.  
+Sample arrays : 
+$Color = array('A' => 'Blue', 'B' => 'Green', 'c' => 'Red'); 
+Expected Output : 
+Values are in lower case. 
+Array ( [A] => blue [B] => green [c] => red )  
+Values are in upper case. 
+Array ( [A] => BLUE [B] => GREEN [c] => RED ) 
+
+<?php
+function change_case($array, $case = 'lower') {
+    if ($case == 'lower') {
+        return array_map('strtolower', $array);
+    } elseif ($case == 'upper') {
+        return array_map('strtoupper', $array);
+    } else {
+        return $array;
+    }
+}
+
+$Color = array('A' => 'Blue', 'B' => 'Green', 'c' => 'Red');
+$lowercase = change_case($Color, 'lower');
+echo "Values are in lower case.<br>";
+print_r($lowercase);
+$uppercase = change_case($Color, 'upper');
+echo "<br><br>Values are in upper case.<br>";
+print_r($uppercase);
+?>
+
+
+
+
+
+
+
+
+
+
+
+13. Write a PHP script which displays all the numbers between 200 and 250 
+that are divisible by 4.   
+Note : Do not use any PHP control statement. 
+Expected Output : 200,204,208,212,216,220,224,228,232,236,240,244,248
+
+<?php
+echo "Numbers divisible by 4 betwwen 200 and 250:<br>";
+$numbers = range(200, 250);
+$divBy4 = array_filter($numbers, fn($n) => $n % 4 === 0);
+echo implode(",", $divBy4);
+?>
+
+
+
+
+
+
+ 1.
+ Arrays– Sorting andDisplaying Top Students
+ Write a PHP program that stores student names and their marks in an associative array (e.g.,
+ ["Rahul" => 85, "Priya" => 92, "Arun" => 78, ...]). Sort the array in descending order of marks and
+ display the top 3students with their names and marks in a neat tabular format.
+ ⸻
+
+
+<?php
+$students = ["Rahul" => 85, "Priya" => 92, "Arun" => 78, "Meena" => 95, "Kiran" => 88];
+
+arsort($students); 
+
+echo "<table border='1' cellpadding='5' cellspacing='0'>
+<tr><th>Name</th><th>Marks</th></tr>";
+$count = 0;
+foreach ($students as $name => $marks) {
+    echo "<tr><td>$name</td><td>$marks</td></tr>";
+    $count++;
+    if ($count == 3) break;
+}
+echo "</table>";
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 2.
+ Arrays + File Handling– Reading Products fromFile
+ Create a text file products.txt with product names and prices (e.g., Laptop,55000, Mouse,500). Write
+ a PHPprogramto:
+ • Readthefilecontentsinto anarray.
+ • Sorttheproductsbasedonprice(ascending).
+ • Display the sorted product list in an HTML table with two columns: Product Name and
+ Price.
+ ⸻
+
+<?php
+$lines = file("products.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$products = [];
+
+foreach ($lines as $line) {
+    list($name, $price) = explode(",", $line);
+    $products[$name] = (int)$price;
+}
+
+asort($products); 
+
+echo "<table border='1' cellpadding='5' cellspacing='0'>
+<tr><th>Product</th><th>Price</th></tr>";
+foreach ($products as $name => $price) {
+    echo "<tr><td>$name</td><td>$price</td></tr>";
+}
+echo "</table>";
+?>
+
+Laptop,55000
+Mouse,500
+Keyboard,1500
+Monitor,12000
+
+
+
+
+
+
+
+
+
+
+
+
+ 3.
+ Regular Expressions– Validating Email Addresses
+ Write a PHP script that has an array of email addresses, some valid and some invalid (e.g.,
+ ["john@example.com", "wrong-email@", "me@site", "user123@gmail.com"]). Using regular
+ expressions, check each email address and print only the valid ones.
+ ⸻
+
+<?php
+$emails = ["john@example.com", "wrong-email@", "me@site", "user123@gmail.com"];
+
+foreach ($emails as $email) {
+    if (preg_match("/^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/", $email)) {
+        echo "$email<br>";
+    }
+}
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 4.
+ Regular Expressions + Error Handling– Password Validation
+ Create a PHPscript that accepts a password string. The password must:
+ • Beatleast8characters long.
+ • Containatleast oneuppercase letter.
+ • Containatleast onedigit.
+ • Containatleast onespecial character (e.g., @, #, $, %).
+ If the password does not meet any of these conditions, throw a custom exception with a message
+ like "Password must contain at least one uppercase letter". Handle the exception and display the
+ error message.
+ ⸻
+
+<?php
+class PasswordException extends Exception {}
+
+function validatePassword($password) {
+    if (strlen($password) < 8) throw new PasswordException("Password must be at least 8 characters");
+    if (!preg_match("/[A-Z]/", $password)) throw new PasswordException("Password must contain at least one uppercase letter");
+    if (!preg_match("/[0-9]/", $password)) throw new PasswordException("Password must contain at least one digit");
+    if (!preg_match("/[@#$%]/", $password)) throw new PasswordException("Password must contain at least one special character (@, #, $, %)");
+    return true;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $password = $_POST["password"];
+
+    try {
+        validatePassword($password);
+        echo "<p style='color:green;'>Password is valid!</p>";
+    } catch (PasswordException $e) {
+        echo "<p style='color:red;'>Error: " . $e->getMessage() . "</p>";
+    }
+}
+?>
+
+<form method="post">
+    Enter Password: <input type="password" name="password" required>
+    <button type="submit">Check</button>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 5.
+ File Handling– Writing and ReadingLogs
+ Write a PHP script that appends log entries to a file access.log. Each entry should follow this
+ format:
+ Username– YYYY-MM-DDHH:MM:SS– Action
+ Example: admin– 2025-09-2610:30:15– LoggedIn
+After writing, read and display only the last 5log entries on the web page.
+ ⸻
+
+
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+$username = "admin";
+$action = "Logged In";
+$timestamp = date("Y-m-d H:i:s");
+$logEntry = "$username – $timestamp – $action" . PHP_EOL;
+
+file_put_contents("access.log", $logEntry, FILE_APPEND);
+
+echo "<h2>Access Log</h2>";
+echo "<pre>";
+
+if (file_exists("access.log")) {
+    $logs = file("access.log", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($logs as $line) {
+        echo htmlspecialchars($line) . "\n";
+    }
+} else {
+    echo "Log file not found.";
+}
+
+echo "</pre>";
+?>
+
+admin – 2025-09-26 12:07:39 – Logged In
+admin – 2025-09-26 12:07:42 – Logged In
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 6.
+ Date and Time– Calculations
+ Write a PHPprogramto:
+ • Displaythecurrent date andtimeinthe format DD-MM-YYYYHH:MM:SS.
+ • Askthe user to input their date of birth (e.g., 1990-05-15) and calculate the number of
+ days left until their next birthday.
+ ⸻
+
+<?php
+date_default_timezone_set('Asia/Kolkata');
+
+
+echo "<h3>Current Date & Time: " . date("d-m-Y H:i:s") . "</h3>";
+
+$message = '';
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $dob_raw = $_POST['dob'] ?? '';
+
+    if (empty($dob_raw)) {
+        $message = "<p style='color:red;'>Please enter your Date of Birth.</p>";
+    } else {
+       
+        $birth = DateTime::createFromFormat('Y-m-d', $dob_raw);
+        $errors = DateTime::getLastErrors();
+
+        if ($birth === false || $errors['error_count'] || $errors['warning_count']) {
+            $message = "<p style='color:red;'>Invalid date format. Please use the date picker (YYYY-MM-DD).</p>";
+        } else {
+            
+            $today = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
+            $currentYear = (int)$today->format('Y');
+
+            $bMonth = (int)$birth->format('m');
+            $bDay   = (int)$birth->format('d');
+
+          
+            if ($bMonth === 2 && $bDay === 29) {
+                if (checkdate(2, 29, $currentYear)) {
+                    $nextBirthday = DateTime::createFromFormat('Y-m-d', sprintf('%04d-02-29', $currentYear));
+                } else {
+                    
+                    $nextBirthday = DateTime::createFromFormat('Y-m-d', sprintf('%04d-02-28', $currentYear));
+                }
+            } else {
+                $nextBirthday = DateTime::createFromFormat('Y-m-d', sprintf('%04d-%02d-%02d', $currentYear, $bMonth, $bDay));
+            }
+
+            
+            if ($nextBirthday < $today) {
+                $nextBirthday->modify('+1 year');
+            }
+
+            $interval = $today->diff($nextBirthday);
+            $daysLeft = (int)$interval->days;
+            $formattedNext = $nextBirthday->format('d-m-Y');
+            $weekday = $nextBirthday->format('l');
+
+            if ($daysLeft === 0) {
+                $message = "<p style='color:green; font-weight:bold;'>Happy Birthday! 🎉 Your birthday is today ({$formattedNext}).</p>";
+            } else {
+                $message  = "<p>Your next birthday will be on <strong>{$formattedNext}</strong> ({$weekday}).<br>";
+                $message .= "Days left until next birthday: <strong>{$daysLeft}</strong>.</p>";
+            }
+        }
+    }
+}
+?>
+
+
+<form method="post" style="margin-top:10px;">
+    <label>Enter your Date of Birth (YYYY-MM-DD): </label>
+    <input type="date" name="dob" required>
+    <button type="submit">Check</button>
+</form>
+
+<hr>
+
+<?php
+
+if (!empty($message)) {
+    echo $message;
+}
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 7.
+ Arrays + Error Handling– Average of Numbers
+ Write a PHP programthat accepts an array of numbers (e.g., [10, 20, 30, 40, 50]) and calculates their
+ average. If the array is empty, throw an exception with the message "No numbers provided" and
+ handle it properly by displaying an error message.
+ ⸻
+
+<?php
+
+class EmptyArrayException extends Exception {}
+
+
+function calculateAverage($numbers) {
+    if (empty($numbers)) {
+        throw new EmptyArrayException("No numbers provided");
+    }
+    return array_sum($numbers) / count($numbers);
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $input = $_POST["numbers"]; 
+    $numbers = explode(",", $input); 
+
+    try {
+        $avg = calculateAverage($numbers);
+        echo "Average of numbers is: " . $avg;
+    } catch (EmptyArrayException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+}
+?>
+
+
+<form method="post">
+    Enter numbers separated by comma: <input type="text" name="numbers" required>
+    <button type="submit">Calculate</button>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 8.
+ File Handling + Regular Expressions– Extracting Mobile Numbers
+ Create a text file data.txt containing some text mixed with phone numbers (e.g., “Call me at
+ 9876543210 or at office 9123456789”). Write a PHP program that uses regular expressions to extract
+ all valid 10-digit mobile numbers from the file and save them into a new file numbers.txt.
+ ⸻
+
+<?php
+$inputFile  = __DIR__ . '/data.txt';
+$outputFile = __DIR__ . '/numbers.txt';
+
+if (!file_exists($inputFile)) {
+    $sampleText = "Call me at 9876543210 or at office 9123456789. Old: 12345";
+    file_put_contents($inputFile, $sampleText);
+}
+
+$data = file_get_contents($inputFile);
+preg_match_all('/\b[6-9][0-9]{9}\b/', $data, $matches);
+
+$numbers = array_values(array_unique($matches[0]));
+
+echo "<h3>Extracted Mobile Numbers:</h3>";
+if (!empty($numbers)) {
+    echo "<ul>";
+    foreach ($numbers as $num) {
+        echo "<li>$num</li>";
+    }
+    echo "</ul>";
+    file_put_contents($outputFile, implode(PHP_EOL, $numbers) . PHP_EOL);
+    echo "<p>Saved " . count($numbers) . " number(s) to numbers.txt</p>";
+} else {
+    echo "<p>No valid mobile numbers found.</p>";
+    file_put_contents($outputFile, "");
+}
+?>
+
+Call me at 9876543210 or at office 9123456789. Wrong: 12345
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 9.
+ Date and Time+FileHandling– BackupFileCreation
+ Write a PHP script that creates a backup copy of any given file. The backup file name should
+ include the current date and time.
+ Example: If the original file is data.txt and today’s date-time is 2025-09-26 11:25:00, the backup file
+ should be saved as data_2025-09-26_11-25.txt.
+ ⸻
+
+<?php
+$originalFile = __DIR__ . '/data.txt';
+
+if (!file_exists($originalFile)) {
+    die("Error: Original file 'data.txt' not found in " . __DIR__);
+}
+
+$dateTime = date("Y-m-d_H-i-s");
+$fileInfo = pathinfo($originalFile);
+$backupFile = $fileInfo['dirname'] . '/' . $fileInfo['filename'] . '_' . $dateTime . '.' . $fileInfo['extension'];
+
+$result = copy($originalFile, $backupFile);
+
+if ($result) {
+    echo "Backup created successfully: " . basename($backupFile);
+    echo "<br>Full path: " . $backupFile;
+} else {
+    echo "Error: Could not create backup in folder " . $fileInfo['dirname'];
+}
+?>
+
+Call me at 9876543210 or at office 9123456789. Wrong: 12345
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 10. CombinedTask– StudentRecordsValidation
+ Youare given a text file students.txt where each line contains student details in this format:
+ Name,Email,DateOfBirth(YYYY-MM-DD)
+ Example: Anita,anita123@gmail.com,2000-06-15
+ Write a PHPprogramthat:
+ • Readseachstudentrecordfromthefile.
+ • Validatestheemail format using regular expressions.
+• Calculatesthestudent’s age fromtheir date of birth.
+ • Displaysthevalidrecords ina table with columns: Name, Email, Age.
+ • Ifarecordhas aninvalid email or missing fields, handle the error gracefully and save the
+ invalid entries into a new file errors.log.
+
+<?php
+$inputFile = __DIR__ . '/students.txt';
+$errorFile = __DIR__ . '/errors.log';
+
+if (!file_exists($inputFile)) {
+    die("Error: students.txt not found");
+}
+
+$students = file($inputFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$validRecords = [];
+$invalidRecords = [];
+
+foreach ($students as $line) {
+    $parts = explode(",", $line);
+
+    if (count($parts) != 3) {
+        $invalidRecords[] = $line;
+        continue;
+    }
+
+    list($name, $email, $dob) = array_map('trim', $parts);
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $invalidRecords[] = $line;
+        continue;
+    }
+
+    $birth = DateTime::createFromFormat('Y-m-d', $dob);
+    if (!$birth) {
+        $invalidRecords[] = $line;
+        continue;
+    }
+
+    $today = new DateTime();
+    $age = $today->diff($birth)->y;
+
+    $validRecords[] = [
+        'name' => $name,
+        'email' => $email,
+        'age' => $age
+    ];
+}
+
+if (!empty($invalidRecords)) {
+    file_put_contents($errorFile, implode(PHP_EOL, $invalidRecords) . PHP_EOL, FILE_APPEND);
+}
+
+echo "<table border='1' cellpadding='5' cellspacing='0'>";
+echo "<tr><th>Name</th><th>Email</th><th>Age</th></tr>";
+
+foreach ($validRecords as $student) {
+    echo "<tr>";
+    echo "<td>" . htmlspecialchars($student['name']) . "</td>";
+    echo "<td>" . htmlspecialchars($student['email']) . "</td>";
+    echo "<td>" . $student['age'] . "</td>";
+    echo "</tr>";
+}
+
+echo "</table>";
+?>
+
+
+Anita,anita123@gmail.com,2000-06-15
+Rahul,rahul99@example.com,1998-12-05
+Priya,wrong-email@,2001-03-22
+Arun,arun_kumar@gmail.com,1999-07-30
+Sonia,sonia#mail.com,2002-01-10
+Kiran,kiran@example.com,not-a-date
+
+
+
+
+
+
+
+PHP Lab Exercises with Outline Solutions 
+1. Cookie-Based Visit Counter 
+Problem: 
+Write a PHP program that uses cookies to count how many times a user has visited your 
+webpage. Display a message showing the visit count. 
+Outline Solution: 
+<?php 
+if(isset($_COOKIE['visits'])) { 
+$count = $_COOKIE['visits'] + 1; 
+} else { 
+$count = 1; 
+} 
+setcookie('visits', $count, time() + 3600); 
+echo "Welcome! You have visited this page $count times."; 
+?> 
+
+<?php
+// Q1: Cookie-Based Visit Counter
+if (isset($_COOKIE['visits'])) {
+    $count = intval($_COOKIE['visits']) + 1;
+} else {
+    $count = 1;
+}
+setcookie('visits', $count, time() + 3600, "/");
+?>
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Q1 - Visit Counter</title></head>
+<body>
+    <h1>Q1: Cookie-Based Visit Counter</h1>
+    <p>Welcome! You have visited this page <?php echo $count; ?> time<?php echo $count>1 ? 's' : ''; ?>.</p>
+    <p><a href="Q1_cookie_counter.php">Refresh</a> | <a href="Q1_cookie_reset.php">Reset</a></p>
+</body>
+</html>
+
+<?php
+// Q1 helper: reset visits cookie
+setcookie('visits', '', time() - 3600, "/");
+header('Location: Q1_cookie_counter.php');
+exit;
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+2. Session-Based Login Authentication 
+Problem: 
+Create a login system using sessions. Redirect to a welcome page upon successful login. 
+Outline Solution: 
+<?php 
+session_start(); 
+if($_POST['user']=="admin" && $_POST['pass']=="1234") { 
+$_SESSION['user'] = "admin"; 
+header("Location: welcome.php"); 
+} else { 
+echo "Invalid credentials."; 
+} 
+?> 
+
+
+<?php
+// Q2: Session-Based Login Authentication (login form + processing)
+session_start();
+$err = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $user = $_POST['user'] ?? '';
+    $pass = $_POST['pass'] ?? '';
+    // Demo credentials: admin / 1234
+    if ($user === 'admin' && $pass === '1234') {
+        $_SESSION['user'] = 'admin';
+        header('Location: Q2_welcome.php');
+        exit;
+    } else {
+        $err = 'Invalid credentials.';
+    }
+}
+?>
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Q2 - Login</title></head>
+<body>
+    <h1>Q2: Login</h1>
+    <?php if ($err): ?><p style="color:red;"><?php echo htmlspecialchars($err); ?></p><?php endif; ?>
+    <form method="post" action="Q2_login.php">
+        <label>Username: <input type="text" name="user" required></label><br><br>
+        <label>Password: <input type="password" name="pass" required></label><br><br>
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
+
+<?php
+// Q2: logout
+session_start();
+session_unset();
+session_destroy();
+header('Location: Q2_login.php');
+exit;
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+3. Remember Me Functionality with Cookies 
+Problem: 
+Add a “Remember Me” option that saves the username in a cookie. 
+Outline Solution: 
+<?php 
+if(isset($_POST['remember'])) { 
+setcookie('username', $_POST['username'], time()+3600*24); 
+} 
+echo "Welcome " . ($_COOKIE['username'] ?? 'Guest'); 
+?> 
+
+<?php
+// Q3: Remember Me Functionality with Cookies
+session_start();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['username'] ?? '');
+    if (!empty($_POST['remember'])) {
+        // store for 30 days
+        setcookie('username', $username, time() + 60*60*24*30, "/");
+    } else {
+        setcookie('username', '', time() - 3600, "/");
+    }
+    $_SESSION['user'] = $username ?: 'Guest';
+    header('Location: Q3_remember_me.php');
+    exit;
+}
+$cookieUser = $_COOKIE['username'] ?? '';
+$welcome = $_SESSION['user'] ?? ($cookieUser ?: 'Guest');
+?>
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Q3 - Remember Me</title></head>
+<body>
+    <h1>Q3: Remember Me</h1>
+    <p>Welcome <?php echo htmlspecialchars($welcome); ?></p>
+    <form method="post" action="Q3_remember_me.php">
+        <label>Username: <input type="text" name="username" value="<?php echo htmlspecialchars($cookieUser); ?>"></label><br><br>
+        <label><input type="checkbox" name="remember" value="1"> Remember Me</label><br><br>
+        <button type="submit">Save</button>
+    </form>
+    <p><a href="Q3_remember_clear.php">Clear Remembered Username</a></p>
+</body>
+</html>
+
+
+<?php
+// Q3 helper: clear remembered username cookie
+setcookie('username', '', time() - 3600, "/");
+header('Location: Q3_remember_me.php');
+exit;
+?>
+
+
+
+
+
+
+
+
+
+
+
+4. Simple CAPTCHA Verification 
+Problem: 
+Generate a CAPTCHA image using GD library and verify user input. 
+Outline Solution: 
+<?php 
+session_start(); 
+$captcha = rand(1000,9999); 
+$_SESSION['captcha'] = $captcha; 
+$image = imagecreate(70,30); 
+$bg = imagecolorallocate($image,255,255,255); 
+$text = imagecolorallocate($image,0,0,0); 
+imagestring($image, 5, 10, 5, $captcha, $text); 
+header("Content-type: image/png"); 
+imagepng($image); 
+?> 
+
+<?php
+// Q4: Simple CAPTCHA image using GD
+session_start();
+$captcha = strval(rand(1000, 9999));
+$_SESSION['captcha'] = $captcha;
+$w = 100; $h = 40;
+$image = imagecreate($w, $h);
+$bg = imagecolorallocate($image, 255, 255, 255);
+$noise_color = imagecolorallocate($image, 200, 200, 200);
+$text_color = imagecolorallocate($image, 0, 0, 0);
+for ($i=0;$i<6;$i++) {
+    imageline($image, rand(0,$w), rand(0,$h), rand(0,$w), rand(0,$h), $noise_color);
+}
+imagestring($image, 5, 18, 10, $captcha, $text_color);
+header('Content-Type: image/png');
+imagepng($image);
+imagedestroy($image);
+?>
+
+
+<?php
+// Q4: CAPTCHA verification form
+session_start();
+$msg = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $input = trim($_POST['captcha'] ?? '');
+    if (isset($_SESSION['captcha']) && $input === $_SESSION['captcha']) {
+        $msg = "CAPTCHA verified successfully.";
+    } else {
+        $msg = "Wrong CAPTCHA. Try again.";
+    }
+    unset($_SESSION['captcha']);
+}
+?>
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Q4 - CAPTCHA</title></head>
+<body>
+    <h1>Q4: CAPTCHA Demo</h1>
+    <?php if ($msg): ?><p><?php echo htmlspecialchars($msg); ?></p><?php endif; ?>
+    <form method="post" action="Q4_captcha_form.php">
+        <p><img src="Q4_captcha_image.php" alt="CAPTCHA image"></p>
+        <label>Enter CAPTCHA: <input type="text" name="captcha" required></label><br><br>
+        <button type="submit">Verify</button>
+    </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+5. Embedding and Displaying an Uploaded Image 
+Problem: 
+Allow users to upload an image and display it. 
+Outline Solution: 
+<?php 
+if(isset($_FILES['file'])) { 
+move_uploaded_file($_FILES['file']['tmp_name'], "uploads/" . 
+$_FILES['file']['name']); 
+echo "<img src='uploads/".$_FILES['file']['name']."' width='200'>"; 
+} 
+?> 
+
+
+<?php
+// Q5: Embedding and Displaying an Uploaded Image
+// Ensure "uploads/" exists and is writable
+$uploadedUrl = '';
+$message = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
+    $targetDir = __DIR__ . '/uploads/';
+    if (!is_dir($targetDir)) mkdir($targetDir, 0755, true);
+    $f = $_FILES['file'];
+    if ($f['error'] === UPLOAD_ERR_OK) {
+        $info = getimagesize($f['tmp_name']);
+        if ($info === false) {
+            $message = "Uploaded file is not a valid image.";
+        } else {
+            $safeName = preg_replace('/[^A-Za-z0-9_\-\.]/', '_', basename($f['name']));
+            $dest = $targetDir . $safeName;
+            if (move_uploaded_file($f['tmp_name'], $dest)) {
+                $uploadedUrl = 'uploads/' . $safeName;
+            } else {
+                $message = "Failed to move uploaded file.";
+            }
+        }
+    } else {
+        $message = "Upload error code: " . $f['error'];
+    }
+}
+?>
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Q5 - Upload Image</title></head>
+<body>
+    <h1>Q5: Upload an Image</h1>
+    <?php if ($message): ?><p style="color:red;"><?php echo htmlspecialchars($message); ?></p><?php endif; ?>
+    <form method="post" enctype="multipart/form-data" action="Q5_upload_image.php">
+        <input type="file" name="file" accept="image/*" required><br><br>
+        <button type="submit">Upload</button>
+    </form>
+    <?php if ($uploadedUrl): ?>
+        <h2>Uploaded Image</h2>
+        <img src="<?php echo htmlspecialchars($uploadedUrl); ?>" style="max-width:400px;">
+    <?php endif; ?>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+6. Create and Draw Graphics Dynamically 
+Problem: 
+Draw simple shapes using the GD library. 
+Outline Solution: 
+<?php 
+$img = imagecreate(200,200); 
+$bg = imagecolorallocate($img,255,255,255); 
+$red = imagecolorallocate($img,255,0,0); 
+imagerectangle($img,50,50,150,150,$red); 
+header("Content-type:image/png"); 
+imagepng($img); 
+?> 
+
+<?php
+// Q6: Create and Draw Graphics Dynamically (GD)
+$width = 300; $height = 200;
+$img = imagecreate($width, $height);
+$bg = imagecolorallocate($img, 255, 255, 255);
+$red = imagecolorallocate($img, 255, 0, 0);
+$green = imagecolorallocate($img, 0, 200, 0);
+$blue = imagecolorallocate($img, 0, 0, 255);
+imagerectangle($img, 20, 20, 120, 120, $red);
+imagefilledellipse($img, 200, 80, 100, 60, $green);
+imageline($img, 0, $height-1, $width-1, 0, $blue);
+header('Content-Type: image/png');
+imagepng($img);
+imagedestroy($img);
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7. Add Text on an Image 
+Problem: 
+Add a watermark or text overlay on an existing image. 
+Outline Solution: 
+<?php 
+$img = imagecreatefromjpeg("sample.jpg"); 
+$color = imagecolorallocate($img,0,0,255); 
+imagestring($img,5,10,10,"VIT Chennai",$color); 
+header("Content-type:image/jpeg"); 
+imagejpeg($img); 
+?>
+
+
+<?php
+// Q7: Add Text on an Image (watermark)
+// If sample.jpg not present, script creates a fallback image.
+$sourcePath = __DIR__ . '/sample.jpg';
+if (!file_exists($sourcePath)) {
+    $img = imagecreatetruecolor(400, 200);
+    $bg = imagecolorallocate($img, 230, 230, 230);
+    imagefilledrectangle($img, 0, 0, 400, 200, $bg);
+    $text = "No sample.jpg found";
+    $black = imagecolorallocate($img, 0, 0, 0);
+    imagestring($img, 5, 10, 90, $text, $black);
+} else {
+    $img = imagecreatefromjpeg($sourcePath);
+    $blue = imagecolorallocate($img, 0, 0, 255);
+    imagestring($img, 5, 10, 10, "VIT Chennai", $blue);
+}
+header('Content-Type: image/jpeg');
+imagejpeg($img, null, 85);
+imagedestroy($img);
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+8. Image Resizing and Scaling 
+Problem: 
+Resize an uploaded image while maintaining aspect ratio. 
+Outline Solution: 
+<?php 
+$src = imagecreatefromjpeg("image.jpg"); 
+$new = imagescale($src, 200, 150); 
+header("Content-type:image/jpeg"); 
+imagejpeg($new); 
+?> 
+
+<?php
+// Q8: Image Resizing and Scaling (upload + resize keeping aspect ratio)
+$resizedUrl = '';
+$message = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
+    $f = $_FILES['image'];
+    if ($f['error'] === UPLOAD_ERR_OK) {
+        $info = getimagesize($f['tmp_name']);
+        if ($info === false) {
+            $message = "Invalid image.";
+        } else {
+            list($w, $h, $type) = $info;
+            $maxWidth = 400;
+            if ($w > $maxWidth) {
+                $ratio = $maxWidth / $w;
+                $newW = (int)($w * $ratio);
+                $newH = (int)($h * $ratio);
+            } else {
+                $newW = $w; $newH = $h;
+            }
+            switch ($type) {
+                case IMAGETYPE_JPEG: $src = imagecreatefromjpeg($f['tmp_name']); break;
+                case IMAGETYPE_PNG:  $src = imagecreatefrompng($f['tmp_name']); break;
+                case IMAGETYPE_GIF:  $src = imagecreatefromgif($f['tmp_name']); break;
+                default: $src = null; break;
+            }
+            if (!$src) {
+                $message = "Unsupported image type.";
+            } else {
+                $dst = imagecreatetruecolor($newW, $newH);
+                if ($type == IMAGETYPE_PNG || $type == IMAGETYPE_GIF) {
+                    imagecolortransparent($dst, imagecolorallocatealpha($dst, 0, 0, 0, 127));
+                    imagealphablending($dst, false);
+                    imagesavealpha($dst, true);
+                }
+                imagecopyresampled($dst, $src, 0,0,0,0, $newW, $newH, $w, $h);
+                $targetDir = __DIR__ . '/uploads/';
+                if (!is_dir($targetDir)) mkdir($targetDir, 0755, true);
+                $safe = preg_replace('/[^A-Za-z0-9_\-\.]/', '_', basename($f['name']));
+                $outPath = $targetDir . 'resized_' . $safe;
+                imagejpeg($dst, $outPath, 85);
+                imagedestroy($src);
+                imagedestroy($dst);
+                $resizedUrl = 'uploads/' . 'resized_' . $safe;
+            }
+        }
+    } else {
+        $message = "Upload error: " . $f['error'];
+    }
+}
+?>
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Q8 - Resize Image</title></head>
+<body>
+    <h1>Q8: Resize Image</h1>
+    <?php if ($message): ?><p style="color:red;"><?php echo htmlspecialchars($message); ?></p><?php endif; ?>
+    <form method="post" enctype="multipart/form-data" action="Q8_resize_image.php">
+        <input type="file" name="image" accept="image/*" required><br><br>
+        <button type="submit">Upload & Resize</button>
+    </form>
+    <?php if ($resizedUrl): ?>
+        <h2>Resized Image</h2>
+        <img src="<?php echo htmlspecialchars($resizedUrl); ?>" style="max-width:600px;">
+    <?php endif; ?>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9. Color Palette Manipulation 
+Problem: 
+Generate random colored shapes using GD functions. 
+Outline Solution: 
+<?php 
+$img = imagecreate(250,250); 
+for($i=0;$i<10;$i++){ 
+$color = imagecolorallocate($img, rand(0,255), rand(0,255), 
+rand(0,255)); 
+imagefilledellipse($img, rand(20,200), rand(20,200), 50, 50, $color); 
+} 
+header("Content-type:image/png"); 
+imagepng($img); 
+?> 
+
+<?php
+// Q9: Color Palette Manipulation - random colored shapes using GD
+$w = 300; $h = 300;
+$img = imagecreatetruecolor($w, $h);
+$bg = imagecolorallocate($img, 255, 255, 255);
+imagefilledrectangle($img, 0, 0, $w, $h, $bg);
+for ($i=0; $i<12; $i++) {
+    $color = imagecolorallocate($img, rand(0,255), rand(0,255), rand(0,255));
+    $x = rand(10, $w-10);
+    $y = rand(10, $h-10);
+    $rx = rand(15, 60);
+    $ry = rand(15, 60);
+    imagefilledellipse($img, $x, $y, $rx, $ry, $color);
+}
+header('Content-Type: image/png');
+imagepng($img);
+imagedestroy($img);
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+10. Send an Email with an Attachment 
+Problem: 
+Send an email using PHP’s mail() function. 
+Outline Solution: 
+<?php 
+$to = "receiver@example.com"; 
+$subject = "Test Email"; 
+$message = "This is a test email from PHP."; 
+$headers = "From: admin@example.com"; 
+if(mail($to, $subject, $message, $headers)) 
+echo "Mail sent successfully."; 
+else 
+echo "Mail failed."; 
+?> 
+
+<?php
+// Q10: Send an Email with an Attachment (using mail())
+// Note: mail() must be configured on the server
+$sent = null;
+$error = null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $to = trim($_POST['to'] ?? '');
+    $subject = trim($_POST['subject'] ?? 'No subject');
+    $messageText = trim($_POST['message'] ?? '');
+    $from = trim($_POST['from'] ?? 'noreply@example.com');
+    $headers = "From: $from";
+    if (isset($_FILES['attach']) && $_FILES['attach']['error'] === UPLOAD_ERR_OK) {
+        $fileTmp = $_FILES['attach']['tmp_name'];
+        $fileName = basename($_FILES['attach']['name']);
+        $data = file_get_contents($fileTmp);
+        $base64 = chunk_split(base64_encode($data));
+        $separator = md5(time());
+        $eol = PHP_EOL;
+        $headers .= $eol . "MIME-Version: 1.0" . $eol;
+        $headers .= "Content-Type: multipart/mixed; boundary=\"" . $separator . "\"" . $eol;
+        $body = "--" . $separator . $eol;
+        $body .= "Content-Type: text/plain; charset=\"utf-8\"" . $eol;
+        $body .= "Content-Transfer-Encoding: 7bit" . $eol . $eol;
+        $body .= $messageText . $eol;
+        $body .= "--" . $separator . $eol;
+        $body .= "Content-Type: application/octet-stream; name=\"" . $fileName . "\"" . $eol;
+        $body .= "Content-Transfer-Encoding: base64" . $eol;
+        $body .= "Content-Disposition: attachment; filename=\"" . $fileName . "\"" . $eol . $eol;
+        $body .= $base64 . $eol;
+        $body .= "--" . $separator . "--";
+        if (mail($to, $subject, $body, $headers)) {
+            $sent = true;
+        } else {
+            $error = "Mail failed (mail() returned false).";
+        }
+    } else {
+        if (mail($to, $subject, $messageText, $headers)) {
+            $sent = true;
+        } else {
+            $error = "Mail failed (mail() returned false).";
+        }
+    }
+}
+?>
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Q10 - Send Email</title></head>
+<body>
+    <h1>Q10: Send Email with Attachment</h1>
+    <?php if ($sent): ?><p style="color:green;">Mail sent successfully.</p><?php elseif ($error): ?><p style="color:red;"><?php echo htmlspecialchars($error); ?></p><?php endif; ?>
+    <form method="post" enctype="multipart/form-data" action="Q10_send_email_attachment.php">
+        <label>To: <input type="email" name="to" required></label><br><br>
+        <label>From: <input type="email" name="from" value="noreply@example.com" required></label><br><br>
+        <label>Subject: <input type="text" name="subject" value="Test Email"></label><br><br>
+        <label>Message:<br><textarea name="message" rows="6" cols="60"></textarea></label><br><br>
+        <label>Attachment: <input type="file" name="attach"></label><br><br>
+        <button type="submit">Send</button>
+    </form>
+    <p>Note: server must be configured to send mail.</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+11. Generate Gradient Image 
+Problem: Create a simple color gradient image using loops. 
+Outline Solution: 
+<?php 
+$img = imagecreate(200,200); 
+for($i=0;$i<200;$i++){ 
+$col = imagecolorallocate($img,$i,$i,255); 
+imageline($img,$i,0,$i,200,$col); 
+} 
+header("Content-type:image/png"); 
+imagepng($img); 
+?> 
+
+<?php
+// Q11: Generate Gradient Image
+$w = 300; $h = 200;
+$img = imagecreatetruecolor($w, $h);
+for ($x = 0; $x < $w; $x++) {
+    $r = (int)($x * 255 / $w);
+    $g = 100;
+    $b = 255 - $r;
+    $col = imagecolorallocate($img, $r, $g, $b);
+    imageline($img, $x, 0, $x, $h, $col);
+}
+header('Content-Type: image/png');
+imagepng($img);
+imagedestroy($img);
+?>
+
+
+
+
+
+
+
+
+
+12. Dynamic Image Banner with Text 
+Problem: Display a dynamic banner with timestamp text. 
+Outline Solution: 
+<?php 
+$img = imagecreate(400,60); 
+$bg = imagecolorallocate($img,240,240,240); 
+$black = imagecolorallocate($img,0,0,0); 
+$text = "Generated on " . date("H:i:s"); 
+imagestring($img,5,10,20,$text,$black); 
+header("Content-type:image/png"); 
+imagepng($img); 
+?> 
+
+<?php
+// Q12: Dynamic Image Banner with Timestamp
+$w = 600; $h = 100;
+$img = imagecreate($w, $h);
+$bg = imagecolorallocate($img, 240, 240, 240);
+$black = imagecolorallocate($img, 0, 0, 0);
+$text = "Generated on " . date("Y-m-d H:i:s");
+$font = 5;
+$tw = imagefontwidth($font) * strlen($text);
+$th = imagefontheight($font);
+$x = ($w - $tw) / 2;
+$y = ($h - $th) / 2;
+imagestring($img, $font, $x, $y, $text, $black);
+header('Content-Type: image/png');
+imagepng($img);
+imagedestroy($img);
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+13. Personalized Greeting Using Sessions 
+Problem: Greet users based on session data. 
+Outline Solution: 
+<?php 
+session_start(); 
+if(!isset($_SESSION['name'])) $_SESSION['name'] = "Student"; 
+echo "Hello, ".$_SESSION['name']."! Welcome to the PHP lab."; 
+?> 
+
+<?php
+// Q13: Personalized Greeting Using Sessions
+session_start();
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
+    $_SESSION['name'] = trim($_POST['name']);
+    header('Location: Q13_greet.php');
+    exit;
+}
+$name = $_SESSION['name'] ?? 'Student';
+?>
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Q13 - Greeting</title></head>
+<body>
+    <h1>Hello, <?php echo htmlspecialchars($name); ?>! Welcome to the PHP lab.</h1>
+    <form method="post" action="Q13_greet.php">
+        <label>Set your name: <input type="text" name="name" value="<?php echo htmlspecialchars($name); ?>"></label>
+        <button type="submit">Save</button>
+    </form>
+    <p><a href="Q13_greet_clear.php">Clear Name</a></p>
+</body>
+</html>
+
+
+<?php
+session_start();
+unset($_SESSION['name']);
+header('Location: Q13_greet.php');
+exit;
+?>
+
+
+
+
+
+
+
+
+
+
+14. Simple Contact Form with mail() 
+Problem: Send a message through email using PHP mail(). 
+Outline Solution: 
+<?php 
+$to="example@domain.com"; 
+$sub="Contact Form Message"; 
+$msg="This is a test message."; 
+$headers="From: user@domain.com"; 
+mail($to,$sub,$msg,$headers); 
+echo "Mail Sent!"; 
+?> 
+
+
+<?php
+// Q14: Simple Contact Form with mail()
+$sent = false;
+$error = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $to = 'example@domain.com';
+    $subject = 'Contact Form Message';
+    $message = trim($_POST['message'] ?? '');
+    $from = trim($_POST['from'] ?? 'user@domain.com');
+    $headers = "From: " . $from;
+    if (!empty($message)) {
+        if (mail($to, $subject, $message, $headers)) {
+            $sent = true;
+        } else {
+            $error = 'Mail failed (ensure mail() is configured).';
+        }
+    } else {
+        $error = 'Message cannot be empty.';
+    }
+}
+?>
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Q14 - Contact Form</title></head>
+<body>
+    <h1>Q14: Contact Form</h1>
+    <?php if ($sent): ?><p style="color:green;">Mail Sent!</p><?php elseif ($error): ?><p style="color:red;"><?php echo htmlspecialchars($error); ?></p><?php endif; ?>
+    <form method="post" action="Q14_contact.php">
+        <label>Your Email: <input type="email" name="from" required></label><br><br>
+        <label>Message:<br><textarea name="message" rows="6" cols="60" required></textarea></label><br><br>
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15. Feedback Form with Session and Email 
+Problem: Collect feedback and email it using session-stored name. 
+Outline Solution: 
+<?php 
+session_start(); 
+$name = $_SESSION['user'] ?? "Guest"; 
+$msg = "Feedback from $name: ".$_POST['feedback']; 
+mail("admin@vit.ac.in","Student Feedback",$msg,"From: noreply@vit.ac.in"); 
+echo "Thank you, $name. Feedback sent!"; 
+?> 
+
+
+<?php
+// Q15: Feedback Form with Session and Email
+session_start();
+$_SESSION['user'] = $_SESSION['user'] ?? 'Guest';
+$sent = false;
+$error = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $feedback = trim($_POST['feedback'] ?? '');
+    $name = $_SESSION['user'] ?? 'Guest';
+    if ($feedback === '') {
+        $error = 'Feedback cannot be empty.';
+    } else {
+        $msg = "Feedback from $name: " . $feedback;
+        if (mail('admin@vit.ac.in', 'Student Feedback', $msg, 'From: noreply@vit.ac.in')) {
+            $sent = true;
+        } else {
+            $error = 'Failed to send feedback (mail not configured).';
+        }
+    }
+}
+?>
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Q15 - Feedback</title></head>
+<body>
+    <h1>Q15: Feedback Form</h1>
+    <p>Logged in as: <?php echo htmlspecialchars($_SESSION['user']); ?></p>
+    <?php if ($sent): ?><p style="color:green;">Thank you, <?php echo htmlspecialchars($_SESSION['user']); ?>. Feedback sent!</p><?php elseif ($error): ?><p style="color:red;"><?php echo htmlspecialchars($error); ?></p><?php endif; ?>
+    <form method="post" action="Q15_feedback.php">
+        <label>Feedback:<br><textarea name="feedback" rows="6" cols="60" required></textarea></label><br><br>
+        <button type="submit">Send Feedback</button>
+    </form>
+</body>
+</html>
+
+
+
+
